@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Restaurant Menu</title>
+  </head>
+  <body>
+    <header>
+      <h1>Restaurant Menu</h1>
+      <input type="text" id="searchInput" placeholder="Search...">
+      <div id="filterContainer">
+        <label>
+          <input type="checkbox" id="veganCheckbox">
+          Vegan
+        </label>
+        <label>
+          <input type="checkbox" id="vegetarianCheckbox">
+          Vegetarian
+        </label>
+        <label>
+          <input type="checkbox" id="allergensCheckbox">
+          Allergens
+        </label>
+      </div>
+    </header>
+    <main>
+      <ul id="menuItems"></ul>
+    </main>
+    <script src="src/app.js"></script>
+  </body>
+</html>
