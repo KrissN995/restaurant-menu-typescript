@@ -39,21 +39,19 @@ import { MenuItem } from './models/model';
       if (menuItemsContainer) {
         menuItemsContainer.innerHTML = "";
         items.forEach((item) => {
-          const listItem = document.createElement("li");
-          listItem.innerHTML = `
-            <h3>${item.name}</h3>
-            ${
-                item.imgURL
-                  ? `<img src="../src/images/${item.imgURL}" width=200 height=200/>`
-                  : '<img src="../src/images/defaultPic.png" width=200 height=200/>'
-              }
-            <p>${item.description}</p>
-            <p>Price: $${item.price}</p>
-            <p>Vegan: ${item.vegan ? "Yes" : "No"}</p>
-            <p>Vegetarian: ${item.vegetarian ? "Yes" : "No"}</p>
-            <p>Allergens: ${item.allergens.length > 0 ? item.allergens.join(", ") : "None"}</p>
-          `;
-          menuItemsContainer.appendChild(listItem);
+          let newDiv = document.createElement('div');
+        newDiv.classList.add('item');
+        newDiv.innerHTML = `
+        ${
+          item.imgURL
+            ? `<img src="../src/images/${item.imgURL}"/>`
+            : '<img src="../src/images/defaultPic.png" />'
+        }
+            <div class="title">${item.name}</div>
+            <div class="price">${item.price.toLocaleString()}</div>
+            `;
+
+          menuItemsContainer.appendChild(newDiv);
         });
       }
     }
