@@ -48,31 +48,75 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderMenuItems(items: MenuItem[]): void {
     if (menuItemsContainer) {
       menuItemsContainer.innerHTML = "";
+  
+      // Group items by category
+      const groupedItems: { [category: string]: MenuItem[] } = {};
       items.forEach((item) => {
-        let newDiv = document.createElement('div');
-        newDiv.classList.add('item');
-        newDiv.innerHTML = `
-        ${item.imgURL
-            ? `<img src="../src/images/${item.imgURL}"/>`
-            : '<img src="../src/images/defaultPic.png" />'
-          }
-            <div class="title">${item.name}</div>
-            <div class="details-row">
-              <div class="key-ingredients">${item.ingredients.join(', ')}</div>
-              <div class="price">${item.price.toLocaleString()} CHF</div>
-            </div>
-            <div class="buttons-row">
-              <button class="details-button">Details</button>
-              <button class="shopping-cart-button" id="shoppingCartButton">
-                <i class="fas fa-shopping-cart"></i>
-              </button>
-              <div id="cartIndicator"></div>
-            </div>`;
-
-        menuItemsContainer.appendChild(newDiv);
+        if (!groupedItems[item.category]) {
+          groupedItems[item.category] = [];
+        }
+        groupedItems[item.category].push(item);
+      });
+  
+      // Define the desired category order
+      const categoryOrder = ["SaladAndSoups", "Main", "Dessert", "Beverages"];
+  
+      // Render items by category in the specified order
+      categoryOrder.forEach((category) => {
+        const categoryItems = groupedItems[category];
+        if (categoryItems && categoryItems.length > 0) {
+          const categoryTitle = getCategoryTitle(category);
+  
+          const categoryDiv = document.createElement("div");
+          categoryDiv.classList.add("category");
+          categoryDiv.innerHTML = `<h2 class="category-title">${categoryTitle}</h2>`;
+  
+          const listDiv = document.createElement("div");
+          listDiv.classList.add("list");
+  
+          categoryItems.forEach((item) => {
+            let newDiv = document.createElement("div");
+            newDiv.classList.add("item");
+            newDiv.innerHTML = `
+              ${item.imgURL ? `<img src="../src/images/${item.imgURL}"/>` : '<img src="../src/images/defaultPic.png" />'}
+              <div class="title">${item.name}</div>
+              <div class="details-row">
+                <div class="key-ingredients">${item.ingredients.join(", ")}</div>
+                <div class="price">${item.price.toLocaleString()} CHF</div>
+              </div>
+              <div class="buttons-row">
+                <button class="details-button">Details</button>
+                <button class="shopping-cart-button" id="shoppingCartButton">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+                <div id="cartIndicator"></div>
+              </div>`;
+  
+            listDiv.appendChild(newDiv);
+          });
+  
+          categoryDiv.appendChild(listDiv);
+          menuItemsContainer.appendChild(categoryDiv);
+        }
       });
     }
   }
+
+  // Helper function to get the category title
+function getCategoryTitle(category: string): string {
+  switch (category) {
+    case "SaladAndSoups":
+      return "Salads and Soups";
+    case "Main":
+      return "Main Dishes";
+    case "Dessert":
+      return "Desserts";
+    case "Beverages":
+      return "Beverages";
+    default:
+      return "";
+  }
+}
 
   function toggleIcons() {
     const inputValue = searchInput.value.trim();
