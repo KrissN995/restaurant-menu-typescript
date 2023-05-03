@@ -1,36 +1,121 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Restaurant Menu</title>
-  </head>
-  <body>
-    <header>
-      <h1>Restaurant Menu</h1>
-      <input type="text" id="searchInput" placeholder="Search...">
-      <div id="filterContainer">
-        <label>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Restaurant</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="left">
+      <div class="logo">
+        <img src="../src/images/Logo.svg" alt="Logo">
+      </div>
+      <div class="name">
+        Menu
+      </div>
+    </div>
+    <div class="right">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <i id="search-icon" class="fas fa-search search-icon"></i>
+        <i id="close-icon" class="fas fa-times close-icon hidden"></i>
+      </div>
+      <button id="filterButton" class="filters-button" style="cursor: pointer;">
+        <i class="fas fa-filter"></i>
+        <span class="button-text">Filters</span>
+      </button>
+    </div>
+  </header>
+  <div id="popupOverlay"></div>
+
+  <div id="filterPopup" class="popup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h2>Filter Options</h2>
+        <button id="closeFilterIcon">
+          <i id="close-icon-filter" class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="popup-body">
+        <div class="filter-row">
           <input type="checkbox" id="veganCheckbox">
-          Vegan
-        </label>
-        <label>
+          <label for="veganCheckbox">Vegan</label>
+          <img src="../src/images/vegan.svg" alt="Vegan Icon" class="filter-icon" />
+        </div>
+        <div class="filter-row">
           <input type="checkbox" id="vegetarianCheckbox">
-          Vegetarian
-        </label>
-        <label>
-          <input type="checkbox" id="allergensCheckbox">
-          Allergens
-        </label>
+          <label for="vegetarianCheckbox">Vegetarian</label>
+          <img src="../src/images/vegetarian.svg" alt="Vegetarian Icon" class="filter-icon" />
+        </div>
+        <div class="filter-row">
+          <input type="checkbox" id="allergensCheckbox" />
+          <label for="allergensCheckbox">Allergens</label>
+        </div>
+        <div class="allergens-list">
+          <div class="allergen-item">
+              <input type="checkbox" id="lactose" />
+              <label for="lactose">Lactose</label>
+              <img src="../src/images/lactose.svg" alt="Icon" class="filter-icon">
+          </div>
+          <div class="allergen-item">
+                <input type="checkbox" id="gluten" />
+                <label for="gluten">Gluten</label>
+                <img src="../src/images/gluten.svg" alt="Icon"  class="filter-icon">
+          </div>
+          <div class="allergen-item">
+              <input type="checkbox" id="nuts" />
+              <label for="nuts">Nuts</label>
+              <img src="../src/images/nuts.svg" alt="Icon"  class="filter-icon">
+          </div>
+          <div class="allergen-item">
+              <input type="checkbox" id="eggs" />
+              <label for="eggs">Eggs</label>
+              <img src="../src/images/egg.svg" alt="Icon" class="filter-icon">
+          </div>
+          <div class="allergen-item">
+              <input type="checkbox" id="fish" />
+              <label for="fish">Fish</label>
+              <img src="../src/images/fish.svg" alt="Icon" class="filter-icon">
+          </div>
+          <div class="allergen-item">
+              <input type="checkbox" id="shellfish" />
+              <label for="shellfish">Shellfish</label>
+              <img src="../src/images/shellfish.svg" alt="Icon" class="filter-icon">
+          </div>
+          <div class="allergen-item">
+              <input type="checkbox" id="soy" />
+              <label for="soy">Soy</label>
+              <img src="../src/images/soy.svg" alt="Icon" class="filter-icon">
+          </div>
+          <div class="allergen-item">
+              <input type="checkbox" id="shrimp" />
+              <label for="shrimp">Shrimp</label>
+              <img src="../src/images/shrimp.svg" alt="Icon" class="filter-icon">
+          </div>
+          <div class="allergen-item">
+              <input type="checkbox" id="transFat" />
+              <label for="transFat">Trans Fat</label>
+              <img src="../src/images/TransFat.svg" alt="Icon" class="filter-icon">
+          </div>
+        </div>
       </div>
-    </header>
-    <main>
-      <div class="list" id="menuItems">
-          
+      <div class="popup-footer">
+        <button id="resetFiltersButton" class="reset-filters-button">Reset Filters</button>
+        <button id="applyFiltersButton" class="apply-filters-button">Apply Filters</button>
       </div>
-      <ul></ul>
-    </main>
-    <script src="src/app.js"></script>
-  </body>
+    </div>
+  </div>
+  <main>
+    <div class="list" id="menuItems">
+
+    </div>
+  </main>
+  <script src="src/app.js"></script>
+</body>
+
 </html>

@@ -1,4 +1,5 @@
 export interface MenuItem {
+    id:string;
     name: string;
     description: string;
     imgURL:string;
@@ -6,12 +7,6 @@ export interface MenuItem {
     vegan: boolean;
     vegetarian: boolean;
     allergens: string[];
-    category?: string,
-    mealType?: string,
-    ingredients?: string[]
-  }
-
-  export interface Category {
-    id: string,
-    name: string;
+    category: string,
+    ingredients: string[]
   }
