@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
             <div class="title">${item.name}</div>
             <div class="details-row">
-              <div class="key-ingredients">Key Ingredients</div>
+              <div class="key-ingredients">${item.ingredients.join(', ')}</div>
               <div class="price">${item.price.toLocaleString()} CHF</div>
             </div>
             <div class="buttons-row">
@@ -73,22 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
-
-  // Helper function to get the category title
-function getCategoryTitle(category: string): string {
-  switch (category) {
-    case "SaladAndSoups":
-      return "Salads and Soups";
-    case "Main":
-      return "Main Dishes";
-    case "Dessert":
-      return "Desserts";
-    case "Beverages":
-      return "Beverages";
-    default:
-      return "";
-  }
-}
 
   function toggleIcons() {
     const inputValue = searchInput.value.trim();
@@ -216,10 +200,10 @@ function getCategoryTitle(category: string): string {
 
   applyFiltersButton.disabled = true;
 
-  // Event listener to enable/disable the apply filters button based on the filter selection
   document.addEventListener("change", () => {
     applyFiltersButton.disabled = !checkFiltersSelected();
   });
+
   shoppingCartButton?.addEventListener('click', () => {
     isCartIndicatorVisible = !isCartIndicatorVisible; // Toggle the visibility state
 
@@ -231,11 +215,6 @@ function getCategoryTitle(category: string): string {
       }
     }
   });
-
-  // searchInput.addEventListener("input", applyFilters);
-  // veganCheckbox.addEventListener("change", applyFilters);
-  // vegetarianCheckbox.addEventListener("change", applyFilters);
-  // allergensCheckbox.addEventListener("change", applyFilters);
 
   // Initial rendering of menu items
   renderMenuItems(menuItems);
